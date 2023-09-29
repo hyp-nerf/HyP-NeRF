@@ -8,6 +8,22 @@
 *denotes equal contribution
 
 This is the official implementation of the paper _"HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork"_ accepted at **NeurIPS 2023**
+
+## BibTeX
+
+If you find HyP-NeRF useful in your work, consider citing us.
+```
+@article{hypnerf2023,
+  title={HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork},
+  author={Sen, Bipasha and Singh, Gaurav and Agarwal, Aditya and Agaram, Rohith and Krishna, K Madhava and Sridhar, Srinath},
+  journal={arXiv},
+  year={2023}
+}
+```
+
+
+
+
 <!--
 **hyp-nerf/HyP-NeRF** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
