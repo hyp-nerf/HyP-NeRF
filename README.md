@@ -1,13 +1,19 @@
 # HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork
-## NeurIPS 2023
+> [NeurIPS 2023](https://nips.cc/)
 
 [Bipasha Sen](https://bipashasen.github.io/)* <sup>**1**</sup> [Gaurav Singh](https://vanhalen42.github.io/)* <sup>**1**</sup>, [Aditya Agarwal](https://skymanaditya1.github.io/)* <sup>**1**</sup>, [Rohith Agaram](https://scholar.google.com/citations?user=Ni6qG7wAAAAJ) <sup>**1**</sup>, [Madhava Krishna](https://scholar.google.com/citations?user=QDuPGHwAAAAJ) <sup>**1**</sup>, [Srinath Sridhar](https://cs.brown.edu/people/ssrinath/) <sup>**2**</sup>
 
-<sup>**1**</sup> International Institute of Information Technology Hyderabad, <sup>**2**</sup> Brown University
+*denotes equal contribution, <sup>**1**</sup> International Institute of Information Technology Hyderabad, <sup>**2**</sup> Brown University
 
-*denotes equal contribution
+https://github.com/hyp-nerf/HyP-NeRF/assets/71246220/f88b8691-822d-42b9-8c29-f8721654c01e
+
 
 This is the official implementation of the paper _"HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork"_ accepted at **NeurIPS 2023**
+
+## 👉 TODO 
+- [ ] Release pretrained checkpoints
+- [ ] Initial Code Release.
+- [ ] ...
 
 ## BibTeX
 
