@@ -5,8 +5,8 @@
 
 *denotes equal contribution, <sup>**1**</sup> International Institute of Information Technology Hyderabad, <sup>**2**</sup> Brown University
 
-https://github.com/hyp-nerf/HyP-NeRF/assets/71246220/f88b8691-822d-42b9-8c29-f8721654c01e
 
+https://github.com/hyp-nerf/HyP-NeRF/assets/71246220/1ec44e00-5c2e-488c-8335-61fd911df801
 
 This is the official implementation of the paper _"HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork"_ accepted at **NeurIPS 2023**
 
