@@ -1,4 +1,4 @@
-# HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork
+# 🚀HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork
 > [NeurIPS 2023](https://nips.cc/)
 
 [Bipasha Sen](https://bipashasen.github.io/)* <sup>**1**</sup> [Gaurav Singh](https://vanhalen42.github.io/)* <sup>**1**</sup>, [Aditya Agarwal](https://skymanaditya1.github.io/)* <sup>**1**</sup>, [Rohith Agaram](https://scholar.google.com/citations?user=Ni6qG7wAAAAJ) <sup>**1**</sup>, [Madhava Krishna](https://scholar.google.com/citations?user=QDuPGHwAAAAJ) <sup>**1**</sup>, [Srinath Sridhar](https://cs.brown.edu/people/ssrinath/) <sup>**2**</sup>
@@ -12,8 +12,15 @@ This is the official implementation of the paper _"HyP-NeRF: Learning Improved N
 
 ## 👉 TODO 
 - [ ] Release pretrained checkpoints.
-- [ ] Initial Code Release by the second week of October.
+- [ ] Code Release
+  - [ ] Training Code
+  - [x] Architecture modules, renderer, Meta MRHE
 - [ ] ...
+
+## CREATING THE ENVIRONMENT 
+Please follow the steps outlined in [torch-ngp](https://github.com/ashawkey/torch-ngp#install) repository for creating the environment upto and including the `Build extension` subheading. 
+
+
 
 ## BibTeX
 
@@ -22,7 +29,7 @@ If you find HyP-NeRF useful in your work, consider citing us.
 @article{hypnerf2023,
   title={HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork},
   author={Sen, Bipasha and Singh, Gaurav and Agarwal, Aditya and Agaram, Rohith and Krishna, K Madhava and Sridhar, Srinath},
-  journal={arXiv},
+  journal={NeurIPS},
   year={2023}
 }
 ```
