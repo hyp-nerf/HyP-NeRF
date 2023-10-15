@@ -20,6 +20,9 @@ This is the official implementation of the paper _"HyP-NeRF: Learning Improved N
 ## CREATING THE ENVIRONMENT 
 Please follow the steps outlined in [torch-ngp](https://github.com/ashawkey/torch-ngp#install) repository for creating the environment upto and including the `Build extension` subheading. 
 
+## Acknowledgement
+
+Some parts of the code are inspired and borrowed from [torch-ngp](https://github.com/ashawkey/torch-ngp) (which we use as our backbone) and [INR-V](https://github.com/bipashasen/INR-V-VideoGenerationSpace). We thank the authors for providing the source code.
 
 
 ## BibTeX
