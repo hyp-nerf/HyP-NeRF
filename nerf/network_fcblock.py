@@ -161,7 +161,6 @@ class HyPNeRF(nn.Module):
         self.device = opt.device
 
         self.clip_mapping = opt.clip_mapping
-        self.varprior = opt.varprior
         self.std = std
 
         self.shape_code = nn.Embedding(self.num_instances, hn_in)

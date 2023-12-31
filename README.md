@@ -13,19 +13,46 @@ This is the official implementation of the paper _"HyP-NeRF: Learning Improved N
 ## 👉 TODO 
 - [ ] Release pretrained checkpoints.
 - [ ] Code Release
-  - [ ] Training Code
+  - [x] Training Code
   - [x] Architecture modules, renderer, Meta MRHE
 - [ ] ...
 
 ## CREATING THE ENVIRONMENT 
 Please follow the steps outlined in [torch-ngp](https://github.com/ashawkey/torch-ngp#install) repository for creating the environment upto and including the `Build extension` subheading. 
 
-## Acknowledgement
+## Dataset
+Download the [ABO Dataset](https://amazon-berkeley-objects.s3.amazonaws.com/index.html). We use the images and the transforms from [abo-benchmark-material.tar](https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-benchmark-material.tar) and the metadata file [abo-listings.tar](https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar) for training. Place them in a directory structure as follows:
+```
+dataset_root
+├── ABO_rendered
+│   ├── B00EUL2B16
+│   ├── B00IFHPVEU
+│   ...
+│
+└── ABO_listings
+  └── listings
+      └── metadata
+          ├── listings_0.json.gz
+          ...
+          └── listings_f.json.gz
+```
+## Training
+To train a model on the ABO dataset run the following command:
+```bash
+CUDA_VISIBLE_DEVICES=0 python main_nerf.py <dataset_root> --workspace <workspace dir> --bound 1.0 --scale 0.8 --dt_gamma 0 --class_choice CHAIR --load_ckpt
+```
+
+## Testing
+To render a specific NeRF from the codebook, run the following command:
+```bash
+CUDA_VISIBLE_DEVICES=0 python main_nerf.py <dataset_root> --workspace <workspace dir containing the pretrained ckpt> --bound 1.0 --scale 0.8 --dt_gamma 0 --class_choice CHAIR --load_ckpt --test --test_index <index of codebook>
+```
+## 👏 Acknowledgement
 
 Some parts of the code are inspired and borrowed from [torch-ngp](https://github.com/ashawkey/torch-ngp) (which we use as our backbone) and [INR-V](https://github.com/bipashasen/INR-V-VideoGenerationSpace). We thank the authors for providing the source code.
 
 
-## BibTeX
+## 📜 BibTeX
 
 If you find HyP-NeRF useful in your work, consider citing us.
 ```
