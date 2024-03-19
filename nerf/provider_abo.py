@@ -116,13 +116,13 @@ class MetaNeRFDataset(Dataset):
         }
 
         if images is not None:
+            images_original = images.clone()
             images = images[index]
             if self.training:
                 C = images.shape[-1]
                 images = torch.gather(images.view(B, -1, C), 1, torch.stack(C * [rays['inds']], -1)) # [B, N, 3/4]
             results['images'] = images
             
-            images_original = images.clone()
             image_clip = images_original[index].squeeze(0)
             image_clip = image_clip[..., :3] * image_clip[..., 3:]
             results['img_original'] = image_clip
