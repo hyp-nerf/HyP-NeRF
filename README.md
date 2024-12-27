@@ -11,7 +11,6 @@ https://github.com/hyp-nerf/HyP-NeRF/assets/71246220/1ec44e00-5c2e-488c-8335-61f
 This is the official implementation of the paper _"HyP-NeRF: Learning Improved NeRF Priors using a HyperNetwork"_ accepted at **NeurIPS 2023**
 
 ## 👉 TODO 
-- [ ] Release pretrained checkpoints.
 - [ ] Code Release
   - [x] Training Code
   - [x] Architecture modules, renderer, Meta MRHE
