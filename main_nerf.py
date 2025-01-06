@@ -8,14 +8,10 @@ from nerf.utils import *
 
 #torch.autograd.set_detect_anomaly(True)
 
-'''
-TODO - sanity check after modifying the val code
-'''
-
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('path', type=str)
+    parser.add_argument('--path', type=str, default='.')
     parser.add_argument('--test', action='store_true', help="test mode")
     parser.add_argument('--test_index', type=int, default=0, help="render")
     parser.add_argument('--workspace', type=str, default='workspace')
@@ -84,23 +80,22 @@ if __name__ == '__main__':
     opt.device = device
     
     # for compression, train set = val set = test set
-    train_dataset = MetaNeRFDataset(opt, device=device, type='train',class_choice=opt.class_choice)
-    val_dataset = MetaNeRFDataset(opt, device=device, type='val',class_choice=opt.class_choice)
-    
-    # test
-    test_dataset = MetaNeRFDataset(opt, device=device, type='test',class_choice=opt.class_choice)
+    if not opt.test:
+        train_dataset = MetaNeRFDataset(opt, device=device, type='train',class_choice=opt.class_choice)
+        val_dataset = MetaNeRFDataset(opt, device=device, type='val',class_choice=opt.class_choice)
+        train_loader = DataLoader(train_dataset, batch_size=opt.b, shuffle=True, num_workers=20)
+        valid_loader = DataLoader(val_dataset, batch_size=opt.b, shuffle=True, num_workers=20)
+        num_examples = train_dataset.num_examples()
+    else:
+        # test
+        test_dataset = MetaNeRFDataset(opt, device=device, type='test',class_choice=opt.class_choice)
 
-   
-    train_loader = DataLoader(train_dataset, batch_size=opt.b, shuffle=True, num_workers=20)
-    valid_loader = DataLoader(val_dataset, batch_size=opt.b, shuffle=True, num_workers=20)
-
-    test_loader = DataLoader(test_dataset, batch_size=opt.b, shuffle=False, num_workers=20)
-    
-    num_examples = train_dataset.num_examples() if not opt.test else test_dataset.num_examples()
+        test_loader = DataLoader(test_dataset, batch_size=opt.b, shuffle=False, num_workers=20)
+        num_examples = 1038
 
     model = HyPNeRF(opt, num_examples) 
         
-    print(model)
+    # print(model)
     
     print(f"Number of training examples: {num_examples}")
     optimizer = lambda model: torch.optim.Adam(model.parameters(), betas=(0.9, 0.99), eps=1e-15)

@@ -57,34 +57,34 @@ class MetaNeRFDataset(Dataset):
         self.global_pose_index = global_pose_index
 
         self.mode = 'abo'
+        if self.type != 'test':
+            with gzip.open(os.path.join(self.listing_path,"listings_0.json.gz"), mode="r") as f:
+                self.metadata = [json.loads(line) for line in f]
+            for _listing in ['1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']:
+                with gzip.open(os.path.join(self.listing_path,f"listings_{_listing}.json.gz"), mode="r") as f:
+                    for line in f:
+                        json_dict= json.loads(line)
+                        self.metadata.append(json_dict)
+            
+            types = []
+            self.objects = os.listdir(self.root_path)
+            self.objects.sort()
+            for d in self.metadata:
+                try:
+                    types.append(d['item_id'])
+                except:
+                    print(d)
 
-        with gzip.open(os.path.join(self.listing_path,"listings_0.json.gz"), mode="r") as f:
-            self.metadata = [json.loads(line) for line in f]
-        for _listing in ['1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']:
-            with gzip.open(os.path.join(self.listing_path,f"listings_{_listing}.json.gz"), mode="r") as f:
-                for line in f:
-                    json_dict= json.loads(line)
-                    self.metadata.append(json_dict)
-        
-        types = []
-        self.objects = os.listdir(self.root_path)
-        self.objects.sort()
-        for d in self.metadata:
-            try:
-                types.append(d['item_id'])
-            except:
-                print(d)
+            print(f"Total objects in ABO Dataset: {len(types)}")
+            filtered_objects = []
+            print(f"Total rendered objects {len(self.objects)}")
+            for val in self.objects:
+                if val in types:
+                    if self.metadata[types.index(val)]['product_type'][0]['value'].lower() == self.class_choice.lower():
+                        filtered_objects.append(val)
 
-        print(f"Total objects in ABO Dataset: {len(types)}")
-        filtered_objects = []
-        print(f"Total rendered objects {len(self.objects)}")
-        for val in self.objects:
-            if val in types:
-                if self.metadata[types.index(val)]['product_type'][0]['value'].lower() == self.class_choice.lower():
-                    filtered_objects.append(val)
-
-        self.objects = filtered_objects.copy()
-        print(f"Total rendered {self.class_choice}s: {len(filtered_objects)}")
+            self.objects = filtered_objects.copy()
+            print(f"Total rendered {self.class_choice}s: {len(filtered_objects)}")
     
     def num_examples(self):
         return len(self.objects)
@@ -136,9 +136,10 @@ class MetaNeRFDataset(Dataset):
     
     def __getitem__(self, index, flag=None, view_pose_dir=None):
         index = self.get_obj_index(index)
-        object_id = self.objects[index]
-        
-        data_path = os.path.join(self.root_path, object_id)
+        if self.type != 'test':
+            object_id = self.objects[index]
+            
+            data_path = os.path.join(self.root_path, object_id)
         if self.type == 'test':
             data_path = './'
         
@@ -225,6 +226,6 @@ class MetaNeRFDataset(Dataset):
     
         intrinsics = np.array([fl_x, fl_y, cx, cy])
         results = self.get_random_rays(images, poses, intrinsics, H, W)
-
-        results["filename"] = f"{object_id}_{self.index.item()}"
+        if self.type != 'test':
+            results["filename"] = f"{object_id}_{self.index.item()}"
         return results, index

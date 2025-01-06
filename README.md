@@ -14,6 +14,7 @@ This is the official implementation of the paper _"HyP-NeRF: Learning Improved N
 - [ ] Code Release
   - [x] Training Code
   - [x] Architecture modules, renderer, Meta MRHE
+  - [x] Pretrained Compression Checkpoint
 - [ ] ...
 
 ## CREATING THE ENVIRONMENT 
@@ -36,15 +37,24 @@ dataset_root
           └── listings_f.json.gz
 ```
 ## Training
-To train a model on the ABO dataset run the following command:
+To train a model on the ABO Chair dataset run the following command:
 ```bash
-CUDA_VISIBLE_DEVICES=0 python main_nerf.py <dataset_root> --workspace <workspace dir> --bound 1.0 --scale 0.8 --dt_gamma 0 --class_choice CHAIR --load_ckpt
+CUDA_VISIBLE_DEVICES=0 python main_nerf.py --path <dataset_root> --workspace <workspace dir> --bound 1.0 --scale 0.8 --dt_gamma 0 --class_choice CHAIR --load_ckpt
 ```
 
-## Testing
+## Compression Demo
+
+Download the pretrained compression checkpoint from [here](https://drive.google.com/file/d/1GFWLWh2waQtqdw8mcVOi2sag2NkJr997/view?usp=sharing) for the CHAIR category and place it in your workspace dir as follows:
+
+```
+<Workspace dir>
+└── checkpoints
+    └── ngp_ep<>.pth
+```
+
 To render a specific NeRF from the codebook, run the following command:
 ```bash
-CUDA_VISIBLE_DEVICES=0 python main_nerf.py <dataset_root> --workspace <workspace dir containing the pretrained ckpt> --bound 1.0 --scale 0.8 --dt_gamma 0 --class_choice CHAIR --load_ckpt --test --test_index <index of codebook>
+CUDA_VISIBLE_DEVICES=0 python main_nerf.py --workspace <Workspace dir> --bound 1.0 --scale 0.6 --dt_gamma 0 --class_choice CHAIR --load_ckpt --test --test_index <index of codebook (max index 1037)>
 ```
 ## 👏 Acknowledgement
 
