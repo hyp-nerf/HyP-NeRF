@@ -91,7 +91,7 @@ if __name__ == '__main__':
         test_dataset = MetaNeRFDataset(opt, device=device, type='test',class_choice=opt.class_choice)
 
         test_loader = DataLoader(test_dataset, batch_size=opt.b, shuffle=False, num_workers=20)
-        num_examples = 1038
+        num_examples = 1038 # TODO: Remove this hard-coded number
 
     model = HyPNeRF(opt, num_examples) 
         
