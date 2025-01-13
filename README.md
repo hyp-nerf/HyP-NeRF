@@ -20,6 +20,8 @@ This is the official implementation of the paper _"HyP-NeRF: Learning Improved N
 ## CREATING THE ENVIRONMENT 
 Please follow the steps outlined in [torch-ngp](https://github.com/ashawkey/torch-ngp#install) repository for creating the environment upto and including the `Build extension` subheading. 
 
+Note: Please build the extensions using the source code on this repository. 
+
 ## Dataset
 Download the [ABO Dataset](https://amazon-berkeley-objects.s3.amazonaws.com/index.html). We use the images and the transforms from [abo-benchmark-material.tar](https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-benchmark-material.tar) and the metadata file [abo-listings.tar](https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar) for training. Place them in a directory structure as follows:
 ```
